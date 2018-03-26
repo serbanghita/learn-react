@@ -16,7 +16,7 @@
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^4.0.1",
+    "awesome-typescript-loader": "^5.0.0-1",
     "source-map-loader": "^0.2.3",
     "tslint": "^5.2.0",
     "tslint-react": "^3.0.0",
