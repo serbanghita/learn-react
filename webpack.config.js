@@ -1,7 +1,10 @@
 var path = require("path");
 
+const { CheckerPlugin } = require('awesome-typescript-loader')
+
 module.exports = {
-    entry: "./src/index.tsx",
+  target: "web",
+  entry: "./src/index.tsx",
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname, "build/js"),
@@ -34,5 +37,9 @@ module.exports = {
             // All output '.js' files will have any sourcemaps re-processed by 'source-mapService-loader'.
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
         ]
-    }
+    },
+
+  plugins: [
+    new CheckerPlugin()
+  ]
 };
