@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es2016",
+    "module": "commonjs",
+    "jsx": "react",
+    "sourceMap": true,
+    "rootDir": "src",
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "listEmittedFiles": true,
+    "experimentalDecorators": true
+  },
+  "include": [
+    "src/index.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
+}
