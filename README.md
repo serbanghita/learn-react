@@ -1,21 +1,17 @@
 # Learn React
 > Learn React.js with TypeScript
 
-**Configuration and installation**
+## Saving local state
 
-1. `npm init` to create [`package.json`].
-1. `tsc --init` to create [`tsconfig.json`].
-1. `tslint --init` to create [`tslint.json`].
-1. Create [`webpack.config.js`]. See [Webpack: Using a Configuration].
-1. `npm install`
+**Takeaways**
 
-**Chapters**
+* Use `this.state = {...}` only in constructor.
+* Don't use `this.state` because it will not re-render a component.
+* State is async.
+* When using the previous state, use `this.state((prevState, props) => {stuff: oldValue - newValue})`; fn instead of obj.
+* Merging is shallow.
+* The data flows down.
 
-1. [Starter]
-1. [Saving local state]
+**Docs**
 
-
-[`package.json`]:package.json
-[`tsconfig.json`]:tsconfig.json
-[`tslint.json`]:tslint.json
-[Webpack: Using a Configuration]:https://webpack.js.org/guides/getting-started/#using-a-configuration
+* https://reactjs.org/docs/state-and-lifecycle.html
