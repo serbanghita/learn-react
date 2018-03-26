@@ -1,17 +1,18 @@
 # Learn React
 > Learn React.js with TypeScript
 
-## Saving local state
+## Event handling
 
 **Takeaways**
 
-* Use `this.state = {...}` only in constructor.
-* Don't use `this.state` because it will not re-render a component.
-* State is async.
-* When using the previous state, use `this.state((prevState, props) => {stuff: oldValue - newValue})`; fn instead of obj.
-* Merging is shallow.
-* The data flows down.
+* Uses [`SyntheticEvent`]
+* Mind the context of `this` in the event callbacks.
 
 **Docs**
 
-* https://reactjs.org/docs/state-and-lifecycle.html
+* https://reactjs.org/docs/handling-events.html
+
+
+
+
+[`SynteticEvent`]:https://reactjs.org/docs/events.html
