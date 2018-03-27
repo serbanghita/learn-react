@@ -33,10 +33,25 @@ class FeedbackBtn extends React.Component<IFeedbackBtnProps, IFeedbackBtnState> 
       });
     };
 
+    const form = <form>
+      <div>
+        <label>Name</label> <input type="text" name="name" placeholder="Your name" />
+      </div>
+      <div>
+        <label>Message</label> <textarea name="message" placeholder="Your message ..." />
+      </div>
+      <div>
+        <button>Send</button>
+      </div>
+    </form>;
+
     return (
-      <button onClick={handleBtnClick}>
-        {this.props.label} <span>{this.state.isOpened ? "↓" : "[+]"}</span>
-      </button>
+      <div>
+        <button onClick={handleBtnClick}>
+          {this.props.label} <span>{this.state.isOpened ? "↓" : "[+]"}</span>
+        </button>
+        {this.state.isOpened ? form : ""}
+      </div>
     );
   }
 
