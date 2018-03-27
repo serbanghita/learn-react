@@ -7,3 +7,11 @@
    > Learn how to start a React.js project from scratch. No boilerplate involved.
 1. [Saving local state](../../tree/saving-local-state)
    > Learn how to save the state internally.
+1. [Handling events](../../tree/handling-events)
+   > Learn how to handle events.
+1. [Conditional rendering](../../tree/conditional-rendering)
+   > Learn how to handle conditional rendering of view elements.
+1. [Lists](../../tree/lists)
+   > Learn how to deal with lists of view elements.
+1. [Lifting local state](../../tree/lifting-local-state)
+   > Learn how to lift local state as a "source of truth".
