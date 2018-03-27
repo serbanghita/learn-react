@@ -1,17 +1,16 @@
 # Learn React
 > Learn React.js with TypeScript
 
-## Lists
+## Lifting the state
 
 **Takeaways**
 
-* Each child in an array or iterator should have a unique "key" prop. See https://fb.me/react-warning-keys
-* Keys help React identify which items have changed, are added, or are removed.
-* `map()` can be embedded in JSX
+* There should be a single “source of truth” for any data that changes in a React application. 
+* As your application grows, you might get into a situation where all you do is hoist state.
 
 **Docs**
 
-* https://reactjs.org/docs/lists-and-keys.html
+* https://reactjs.org/docs/lifting-state-up.html
 
 
 
