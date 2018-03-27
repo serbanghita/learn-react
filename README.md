@@ -1,15 +1,18 @@
 # Learn React
 > Learn React.js with TypeScript
 
-## Conditional rendering
+## Lists
 
 **Takeaways**
 
-* multiple ways to write a conditional: inline, classic, `cond && <elem>`
-* returning `null` in the Component's `constructor` will not render it.
-    * `componentWillUpdate`, `componentDidUpdate`, etc will still be called.
+* Each child in an array or iterator should have a unique "key" prop. See https://fb.me/react-warning-keys
+* Keys help React identify which items have changed, are added, or are removed.
+* `map()` can be embedded in JSX
 
 **Docs**
 
-* https://reactjs.org/docs/conditional-rendering.html
+* https://reactjs.org/docs/lists-and-keys.html
+
+
+
 

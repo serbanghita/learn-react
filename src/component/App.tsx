@@ -33,12 +33,25 @@ class FeedbackBtn extends React.Component<IFeedbackBtnProps, IFeedbackBtnState> 
       });
     };
 
+    const formRatings = [1, 2, 3, 4, 5].map((number) =>
+      <span key={number.toString()}>
+        <input type="radio" name="rating" value={number} />
+        <label>{number}</label>
+      </span>
+    );
+
     const form = <form>
       <div>
-        <label>Name</label> <input type="text" name="name" placeholder="Your name" />
+        <label>Name</label> <br />
+        <input type="text" name="name" placeholder="Your name" />
       </div>
       <div>
-        <label>Message</label> <textarea name="message" placeholder="Your message ..." />
+        <label>Message</label> <br />
+        <textarea name="message" placeholder="Your message ..." />
+      </div>
+      <div>
+        <label>Rate page</label> <br />
+        {formRatings}
       </div>
       <div>
         <button>Send</button>
