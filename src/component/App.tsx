@@ -1,6 +1,7 @@
 import * as React from "react";
 import Feedback from "./Feedback";
 import CurrencyConverter from "./CurrencyConverter";
+import Tree from "./Tree";
 
 export interface IAppProps {
     title: string;
@@ -30,6 +31,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
             <p>A static description of my app.</p>
             <Feedback label="Send feedback"/>
             <CurrencyConverter />
+            <Tree />
         </div>
     );
   }
