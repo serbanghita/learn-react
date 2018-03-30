@@ -1,6 +1,6 @@
 import * as React from "react";
 
-// Tree node.
+// Tree node interfaces.
 interface ITreeNode {
   title: string;
   url: string;
@@ -15,7 +15,7 @@ interface ITreeNodeProps {
   dataModel: ITreeNodeState;
 }
 
-// Tree root.
+// Tree root interfaces.
 interface ITreeProps {
 
 }
@@ -46,38 +46,14 @@ export default class Tree extends React.Component<ITreeProps, ITreeState> {
     this.setState({query: query})
   }
 
-  // private filterModelByQuery(nodes: ITreeNodeState[], query: string) {
-  //   const search = new RegExp(query, "i");
-  //   return nodes.filter((node: ITreeNodeState) => {
-  //     if (node.children && node.children.length > 0) {
-  //       this.filterModelByQuery(node.children, query);
-  //     }
-  //     return node.title.match(search) !== null && !node.children;
-  //   });
-  // }
-  //
-  // private filter(): ITreeNodeState[] {
-  //   const dataModel = this.state.dataModel;
-  //   const query = this.state.query;
-  //
-  //   if (query !== "" && query.length >= 3) {
-  //     return this.filterModelByQuery(dataModel, query);
-  //   }
-  //
-  //   return dataModel;
-  // }
-
   public render() {
-    // const nodes = this.filter();
-    // console.log(nodes);
 
     const query = this.state.query;
+    let nodes: ITreeNode[] = this.state.dataModel;
 
     const cloneNode = (node: ITreeNodeState): ITreeNodeState => {
       return Object.assign({}, node, { children: node.children ? node.children.map(cloneNode) : []});
     };
-
-    let nodes: ITreeNode[] = this.state.dataModel;
 
     if (query.length > 3) {
 
@@ -101,8 +77,6 @@ export default class Tree extends React.Component<ITreeProps, ITreeState> {
     const treeNodes = nodes.map((treeNode: ITreeNodeState, index: number) => {
       return <TreeNode key={index} dataModel={treeNode} />
     });
-
-    console.log(treeNodes);
 
     return (
       <fieldset className="tree">

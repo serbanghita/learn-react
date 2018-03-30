@@ -1,16 +1,18 @@
 # Learn React
 > Learn React.js with TypeScript
 
-## Lifting the state
+## Thinking in React
 
 **Takeaways**
 
-* There should be a single “source of truth” for any data that changes in a React application. 
-* As your application grows, you might get into a situation where all you do is hoist state.
+* React is very good for fast prototyping.
+* Start with a mock design and mocked JSON model data.
+* Iterate over hierarchy of the components.
+* Put the state as high as possible (in the controller of the components).
 
 **Docs**
 
-* https://reactjs.org/docs/lifting-state-up.html
+* https://reactjs.org/docs/thinking-in-react.html
 
 
 
