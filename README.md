@@ -14,8 +14,8 @@
 1. [Lists](../../tree/lists)
    > Learn how to deal with lists of view elements.
 1. [Lifting local state](../../tree/lifting-local-state)
-   > Learn how to lift local state as a "source of truth".
+   > Learn how to lift local state as a "source of truth". \
    > We build a simple currency converter.
 1. [Thinking in React](../../tree/thinking-in-react)
-   > Learn how to think the React way of building your app.
-   > We build a recursive tree menu.
+   > Learn how to think the React way of building your app. \
+   > We build a recursive tree menu with a search attached.
