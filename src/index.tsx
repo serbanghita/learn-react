@@ -3,6 +3,6 @@ import * as ReactDOM from "react-dom";
 import App from "./component/App";
 
 ReactDOM.render(
-  <App title="React and TypeScript demo!" titleColor="blue" />,
+  <App title="Prototype Title" titleColor="blue" />,
   document.getElementById("app")
 );
