@@ -5,15 +5,15 @@
   "scripts": {
     "tsc": "./node_modules/.bin/tsc",
     "build": "./node_modules/.bin/webpack --mode development",
-    "dev": "./node_modules/.bin/webpack-dev-server --open --watch-content-base --mode development"
+    "dev": "./node_modules/.bin/webpack-dev-server --open --watch-content-base --mode production"
   },
   "author": "Serban Ghita",
   "license": "MIT",
   "dependencies": {
-    "@types/react": "^15.0.24",
-    "@types/react-dom": "^15.5.0",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "@types/react": "^16.3.1",
+    "@types/react-dom": "^16.0.4",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.0.0-1",

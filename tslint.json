@@ -8,7 +8,9 @@
   "jsRules": {},
   "rules": {
     "object-literal-sort-keys": false,
-    "trailing-comma": false
+    "trailing-comma": false,
+    "max-line-length": [false, 160],
+    "member-ordering": false
   },
   "rulesDirectory": []
 }

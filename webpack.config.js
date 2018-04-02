@@ -1,6 +1,6 @@
 var path = require("path");
 
-const { CheckerPlugin } = require('awesome-typescript-loader')
+const { CheckerPlugin } = require('awesome-typescript-loader');
 
 module.exports = {
   target: "web",
