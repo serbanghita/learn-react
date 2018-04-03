@@ -1,18 +1,14 @@
 # Learn React
 > Learn React.js with TypeScript
 
-## Thinking in React
+## Prototyping in React
 
 **Takeaways**
 
-* React is very good for fast prototyping.
-* Start with a mock design and mocked JSON model data.
-* Iterate over hierarchy of the components.
-* Put the state as high as possible (in the controller of the components).
-
-**Docs**
-
-* https://reactjs.org/docs/thinking-in-react.html
+* Start prototyping just using props and state and keep the state on the top level.
+* Only extract code into a new component when needed.
+* Simulate events like login, logout, popups, etc.
+* Keep data static.
 
 
 
