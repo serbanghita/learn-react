@@ -19,3 +19,6 @@
 1. [Thinking in React](../../tree/thinking-in-react)
    > Learn how to think the React way of building your app. \
    > We build a recursive tree menu with a search attached.
+1. [Prototyping in React](../../tree/prototyping-in-react)
+   > Learn how to prototype a webapp in React without using a storage.
+   > Apply all the principles learned in the previous chapters.
