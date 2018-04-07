@@ -1,4 +1,6 @@
 import * as React from "react";
+import LocalStorage from "./LocalStorage";
+import * as formToObject from "form_to_object";
 
 interface ICardProps {
   imgSrc?: string;
@@ -84,29 +86,26 @@ class LeftMenu extends React.Component<ILeftMenuProps, {}> {
             </div>
           </div>
         </li>
+        <li className="menu-item"><a href="#index" className="active">👋 Welcome</a></li>
         <li className="menu-item">
           <div className="menu-badge">
             <label className="label label-primary">2</label>
           </div>
           <a href="#logout">My profile</a>
         </li>
-        <li className="divider" data-content="Game" />
-        <li className="menu-item">
-          <a href="#index">Play!</a>
-        </li>
-        <li className="menu-item">
-          <a href="#index">Tutorials</a>
-        </li>
-        <li className="menu-item">
-          <a href="#index" className="active">
-            Achievements
-          </a>
-        </li>
-        <li className="menu-item">
-          <a href="#index">
-            Story
-          </a>
-        </li>
+
+        <li className="divider" data-content="Play!" />
+        <li className="menu-item"><a href="#index">Tutorial</a></li>
+        <li className="menu-item"><a href="#index">Numbers</a></li>
+        <li className="menu-item"><a href="#index">Adding</a></li>
+        <li className="menu-item"><a href="#index">Subtracting</a></li>
+        <li className="menu-item"><a href="#index">Multiplying</a></li>
+        <li className="menu-item"><a href="#index">Dividing</a></li>
+        <li className="menu-item"><a href="#index">Letters</a></li>
+        <li className="divider" data-content="Info" />
+        <li className="menu-item"><a href="#index">Achievements</a></li>
+        <li className="menu-item"><a href="#index">Story</a></li>
+        <li className="menu-item"><a href="#index">Credits</a></li>
         <li className="divider" />
         <li className="menu-item">
           <a href="#logout" onClick={this.onLogout}>Logout</a>
@@ -116,46 +115,77 @@ class LeftMenu extends React.Component<ILeftMenuProps, {}> {
   }
 }
 
-class SignupForm extends React.Component<{}, {}> {
+
+interface ISignupFormData {
+  username: string;
+  password: string;
+  passwordAgain: string;
+  gender: string;
+  terms: string;
+}
+
+interface ISignupForm {
+  onSignup: (formData: any) => void;
+  userData: IUserData;
+}
+class SignupForm extends React.Component<ISignupForm, {}> {
+
+  constructor(prop) {
+    super(prop);
+    this.onSignup = this.onSignup.bind(this);
+  }
+
+  private onSignup(e) {
+    e.preventDefault();
+    const formData = formToObject("signup-form");
+    this.props.onSignup(formData);
+  }
+
   public render() {
     return (
-      <form>
+      <form id="signup-form">
         <div className="form-group">
           <label className="form-label" htmlFor="input-example-1">Username</label>
-          <input className="form-input" type="text" id="input-example-1" placeholder="Username" />
+          <input className="form-input" type="text" name="username" id="input-example-1" placeholder="Username" />
         </div>
 
         <div className="form-group">
           <label className="form-label" htmlFor="input-example-2">Password</label>
-          <input className="form-input" type="password" id="input-example-2" placeholder="Password (at least 8 characters)" />
+          <input className="form-input" type="password" name="password" id="input-example-2" placeholder="Password (at least 8 characters)" />
         </div>
 
         <div className="form-group">
           <label className="form-label" htmlFor="input-example-3">Password again</label>
-          <input className="form-input" type="password" id="input-example-3" placeholder="Confirm password" />
+          <input className="form-input" type="password" name="passwordAgain" id="input-example-3" placeholder="Confirm password" />
         </div>
 
         <div className="form-group">
           <label className="form-label">Gender</label>
           <label className="form-radio">
-            <input type="radio" name="gender" defaultChecked={true} />
+            <input type="radio" name="gender" value="male" defaultChecked={true} />
               <i className="form-icon" /> Male
           </label>
           <label className="form-radio">
-            <input type="radio" name="gender" />
+            <input type="radio" name="gender" value="female" />
               <i className="form-icon" /> Female
           </label>
         </div>
 
         <div className="form-group">
           <label className="form-checkbox">
-            <input type="checkbox" />
+            <input type="checkbox" name="terms" />
               <i className="form-icon" /> I agree with the <a href="#terms">Terms and Conditions</a>
           </label>
         </div>
 
         <div className="form-group">
-          <button className="btn btn-primary btn-lg">Signup</button>
+          <button
+            className={`btn btn-primary btn-lg ${this.props.userData.isSigningUp ? `loading disabled` : ``}`}
+            name="signup"
+            onClick={this.onSignup}
+          >
+            Signup
+          </button>
         </div>
       </form>
     );
@@ -411,14 +441,29 @@ export interface IAppState {
   userData: IUserData;
 }
 
-interface IUserData {
+export interface IUserData {
+  loginCounts: number;
+  isSigningUp: boolean;
   isLoggingIn: boolean;
   isLoggedIn: boolean;
+  isSavingProfile: boolean;
   username: string;
   email: string;
   gender: "male" | "female";
   profilePic: string;
 }
+
+const DEFAULT_USER_DATA: IUserData = {
+  loginCounts: 0,
+  isSigningUp: false,
+  isLoggingIn: false,
+  isLoggedIn: false,
+  isSavingProfile: false,
+  username: "",
+  email: "",
+  gender: "male",
+  profilePic: "img/avatar-4.png"
+};
 
 export default class App extends React.Component<IAppProps, IAppState> {
 
@@ -429,26 +474,39 @@ export default class App extends React.Component<IAppProps, IAppState> {
     };
     this.onLogin = this.onLogin.bind(this);
     this.onLogout = this.onLogout.bind(this);
+    this.onSignup = this.onSignup.bind(this);
   }
 
   public componentDidMount() {
-    const userData: IUserData = {
-      isLoggingIn: false,
-      isLoggedIn: false,
-      username: "",
-      email: "",
-      gender: "male",
-      profilePic: "img/avatar-4.png"
-    };
-    this.setState({userData});
+    this.setState({userData: DEFAULT_USER_DATA});
+  }
+
+  private onSignup(formData: ISignupFormData) {
+    // Intermediary state for the UI.
+    this.setState((prevState: IAppState) => {
+      return { userData: Object.assign({}, prevState.userData, { isSigningUp: true }) };
+    }, () => LocalStorage.Instance.syncProfile(this.state.userData));
+
+    // Simulate a signup XHR delay.
+    setTimeout(() => {
+      this.setState((prevState: IAppState) => {
+        return {
+          userData: Object.assign({}, prevState.userData, {
+            username: formData.username,
+            gender: formData.gender,
+            isSigningUp: false,
+            isLoggedIn: true
+          })
+        };
+      }, () => LocalStorage.Instance.syncProfile(this.state.userData));
+    }, 1000);
   }
 
   private onLogin(username: string, password: string) {
     // Intermediary state for the UI.
     this.setState((prevState: IAppState) => {
-      const userData = Object.assign({}, prevState.userData, { isLoggingIn: true });
-      return { userData };
-    });
+      return { userData: Object.assign({}, prevState.userData, { isLoggingIn: true }) };
+    }, () => LocalStorage.Instance.syncProfile(this.state.userData));
 
     // Simulate a login XHR delay.
     setTimeout(() => {
@@ -456,23 +514,20 @@ export default class App extends React.Component<IAppProps, IAppState> {
         let partialUserData;
 
         if (username === "test" && password === "test") {
-          partialUserData = { isLoggedIn: true, isLoggingIn: false, username };
+          partialUserData = { isLoggedIn: true, isLoggingIn: false, username, loginCounts: ++prevState.userData.loginCounts };
         } else {
           partialUserData = { isLoggedIn: false, isLoggingIn: false };
         }
 
-        const userData = Object.assign({}, prevState.userData, partialUserData);
-
-        return { userData };
-      }));
+        return { userData: Object.assign({}, prevState.userData, partialUserData) };
+      }), () => LocalStorage.Instance.syncProfile(this.state.userData));
     }, 1000);
 
   }
 
   private onLogout() {
     this.setState((prevState: IAppState) => {
-      const userData = Object.assign({}, prevState.userData, { isLoggingIn: false, isLoggedIn: false });
-      return { userData };
+      return { userData: Object.assign({}, prevState.userData, { isLoggingIn: false, isLoggedIn: false }) };
     });
   }
 
@@ -487,7 +542,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
           <LeftMenu userData={this.state.userData} onLogout={this.onLogout}/>
         </div>
         <div className="column col-9">
-          <HomePageContent/>
+          {this.state.userData.loginCounts > 1 ? <HomePageContent/> : <WelcomePageContent/>}
         </div>
       </div>
     );
@@ -512,7 +567,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
         </div>
         <div className="divider-vert" data-content="OR" />
         <div className="column col-3 col-mx-left">
-          <SignupForm/>
+          <SignupForm onSignup={this.onSignup} userData={this.state.userData}/>
         </div>
       </div>
     );
@@ -532,6 +587,101 @@ export default class App extends React.Component<IAppProps, IAppState> {
           </div>
           {this.state.userData.isLoggedIn ? loggedInContent : anonymousContent}
         </div>
+    );
+  }
+}
+
+class WelcomePageContent extends React.Component<{}, {}> {
+  public render() {
+    return (
+      <div className="columns">
+        <div className="column col-12">
+          <div className="panel">
+            <div className="panel-header">
+              <div className="panel-title">Welcome to our community!</div>
+            </div>
+            <div className="panel-body">
+              <p>Donec in urna nec velit interdum ultricies ac vitae dolor. Praesent ex augue, convallis ut eros eu,
+                iaculis porta libero. Nunc est nunc, dignissim eget leo eget, pretium pellentesque nisl.
+                Duis a diam pharetra, elementum tortor eu, facilisis tellus. Integer in neque turpis.</p>
+
+              <p>Cras tincidunt lacus scelerisque, elementum magna at, posuere nisl. Curabitur fringilla libero dolor,
+                non lobortis nulla laoreet at. Donec quis maximus libero, at ornare justo. Sed semper, erat nec porta
+                ultrices, libero mauris consequat enim, id pulvinar nisl leo vitae mi. In ac urna nunc. Donec tristique
+                dui tellus. In fringilla augue quis vestibulum sollicitudin.</p>
+
+              <p>Nulla cursus consectetur lorem, sed molestie eros tincidunt sit amet. Mauris pulvinar dolor
+                condimentum, fermentum risus non, viverra sapien. Donec euismod tellus sit amet elit pellentesque
+                hendrerit.</p>
+
+              <p>Fusce molestie, mauris vitae porta eleifend, est nulla pharetra lorem, et commodo est eros ut justo.</p>
+
+              <button className="btn">Story</button>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+interface IMyProfileProps {
+  userData: IUserData;
+  onProfileUpdate: () => void;
+}
+
+class MyProfilePageContent extends React.Component<IMyProfileProps, {}> {
+
+  constructor(props) {
+    super(props);
+    this.onProfileUpdate = this.onProfileUpdate.bind(this);
+  }
+
+  private onProfileUpdate(e) {
+    e.preventDefault();
+    console.log(e);
+    // @important This is where you reach the limit of prototyping without a router!
+  }
+
+  public render() {
+    return (
+      <div className="columns">
+        <form id="profile-form">
+          <div className="form-group">
+            <label className="form-label" htmlFor="username">Username</label>
+            <input className="form-input" type="text" id="username" placeholder="Your username" value={this.props.userData.username} />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label" htmlFor="email">Email</label>
+            <input className="form-input" type="text" id="email" placeholder="you@email.com" value={this.props.userData.email} />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">Gender</label>
+            <label className="form-radio">
+              <input type="radio" name="gender" value="male" checked={this.props.userData.gender === "male"} />
+                <i className="form-icon" /> Male
+            </label>
+            <label className="form-radio">
+              <input type="radio" name="gender" value="female" checked={this.props.userData.gender === "female"} />
+                <i className="form-icon" /> Female
+            </label>
+          </div>
+
+          <div className="form-group">
+            <button
+              className={`btn btn-primary btn-lg ${this.props.userData.isSavingProfile ? `loading disabled` : ``}`}
+              name="update"
+              onClick={this.onProfileUpdate}
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }
