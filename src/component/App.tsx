@@ -1,25 +1,31 @@
 import * as React from "react";
 
-interface ICardProps {
-  imgSrc?: string;
+interface ICardData {
   title: string;
   subtitle: string;
-  body?: string;
+  body: string;
+  imgSrc: string;
   btnLabel: string;
-  canPlay: boolean;
+  canBuy: boolean;
+}
+
+interface ICardProps {
+  cardData: ICardData;
 }
 
 class CardSimple extends React.Component<ICardProps, {}> {
 
   public render() {
+    const cardData = this.props.cardData;
+
     return (
       <div className="card">
         <div className="card-header">
-          <div className="card-title h5">{this.props.title}</div>
-          <div className="card-subtitle text-gray">{this.props.subtitle}</div>
+          <div className="card-title h5">{cardData.title}</div>
+          <div className="card-subtitle text-gray">{cardData.subtitle}</div>
         </div>
         <div className="card-footer">
-          <button className={`btn btn-primary ${!this.props.canPlay ? "disabled" : ""}`}>{this.props.btnLabel}</button>
+          <button className={`btn btn-primary ${!cardData.canBuy ? "disabled" : ""}`}>{cardData.btnLabel}</button>
         </div>
       </div>
     );
@@ -30,20 +36,22 @@ class CardSimple extends React.Component<ICardProps, {}> {
 class CardWithImage extends React.Component<ICardProps, {}> {
 
   public render() {
+    const cardData = this.props.cardData;
+
     return (
       <div className="card">
         <div className="card-image">
-        <img src={this.props.imgSrc} className="img-responsive" />
+        <img src={cardData.imgSrc} className="img-responsive" />
         </div>
         <div className="card-header">
-          <div className="card-title h5">{this.props.title}</div>
-          <div className="card-subtitle text-gray">{this.props.subtitle}</div>
+          <div className="card-title h5">{cardData.title}</div>
+          <div className="card-subtitle text-gray">{cardData.subtitle}</div>
         </div>
         <div className="card-body">
-          {this.props.body}
+          {cardData.body}
         </div>
         <div className="card-footer">
-          <button className={`btn btn-primary ${!this.props.canPlay ? "disabled" : ""}`}>{this.props.btnLabel}</button>
+          <button className={`btn btn-primary ${!cardData.canBuy ? "disabled" : ""}`}>{cardData.btnLabel}</button>
         </div>
       </div>
     );
@@ -88,26 +96,21 @@ class LeftMenu extends React.Component<ILeftMenuProps, {}> {
           <div className="menu-badge">
             <label className="label label-primary">2</label>
           </div>
-          <a href="#logout">My profile</a>
-        </li>
-        <li className="divider" data-content="Game" />
-        <li className="menu-item">
-          <a href="#index">Play!</a>
+          <a href="#index" className="active">Wall</a>
         </li>
         <li className="menu-item">
-          <a href="#index">Tutorials</a>
+          <a href="#index">Letters</a>
         </li>
         <li className="menu-item">
-          <a href="#index" className="active">
-            Achievements
-          </a>
+          <a href="#index">Numbers</a>
         </li>
         <li className="menu-item">
-          <a href="#index">
-            Story
-          </a>
+          <a href="#index">Products</a>
         </li>
         <li className="divider" />
+        <li className="menu-item">
+          <a href="#logout">My profile</a>
+        </li>
         <li className="menu-item">
           <a href="#logout" onClick={this.onLogout}>Logout</a>
         </li>
@@ -162,7 +165,7 @@ class SignupForm extends React.Component<{}, {}> {
   }
 }
 
-class HomePageContent extends React.Component<{}, {}> {
+class ListExamplePageContent extends React.Component<{}, {}> {
   public render() {
 
     const tutorialCardsData: ICardProps[] = [
@@ -392,8 +395,8 @@ class HeaderLoginForm extends React.Component<IHeaderLoginFormProps, {}> {
       <form className="form-horizontal">
         <div className="form-group">
           <div className="input-group input-inline">
-            <input className="form-input" type="text" id="input-example-1u" placeholder="Username" ref={(el) => this.usernameInput = el as HTMLInputElement} />
-            <input className="form-input" type="password" id="input-example-2p" placeholder="Password" ref={(el) => this.passwordInput = el as HTMLInputElement} />
+            <input className="form-input" type="text" id="input-example-1u" placeholder="Username" value="test" ref={(el) => this.usernameInput = el as HTMLInputElement} />
+            <input className="form-input" type="password" id="input-example-2p" placeholder="Password" value="test" ref={(el) => this.passwordInput = el as HTMLInputElement} />
             <button className={`btn btn-primary input-group-btn ${this.props.userData.isLoggingIn ? `loading disabled` : ``}`} onClick={this.onLogin}>Login <i className="form-icon icon icon-arrow-right" /></button>
           </div>
         </div>
@@ -401,6 +404,163 @@ class HeaderLoginForm extends React.Component<IHeaderLoginFormProps, {}> {
     );
   }
 }
+
+class AnonymousHomePage extends React.Component<{}, {}> {
+  public render() {
+    return (
+      <div className="columns">
+        <div className="column col-6">
+          <p>Morbi aliquet tincidunt risus pretium imperdiet. Vestibulum vel semper arcu. Nulla vitae nibh tellus.
+            Aenean laoreet vulputate mauris eu malesuada. Pellentesque eu est dui. Donec finibus tellus ut cursus
+            maximus. Duis semper feugiat iaculis. Maecenas id purus sit amet lectus aliquet aliquet.
+            Integer ac risus lectus.</p>
+          <blockquote>
+            <p>The advance of technology is based on making it fit in so that you don't really even notice it, so it's part of everyday life. </p>
+            <cite>- Bill Gates</cite>
+          </blockquote>
+          <p>Quisque faucibus, est et ultricies fermentum, risus ipsum
+            viverra nunc, ut hendrerit felis massa eu odio. Vivamus mollis lacinia
+            metus, eu elementum erat fringilla quis. Donec faucibus urna sed pharetra
+            semper</p>
+
+          <button className="btn">Learn more</button>
+        </div>
+        <div className="divider-vert" data-content="OR" />
+        <div className="column col-3 col-mx-left">
+          <SignupForm/>
+        </div>
+      </div>
+    );
+  }
+}
+
+interface ILoggedInPageProps {
+  userData: IUserData;
+  onLogout: () => void;
+}
+
+class LoggedInPage extends React.Component<ILoggedInPageProps, {}> {
+  public render() {
+    return (
+      <div className="columns">
+        <div className="column col-3">
+          <LeftMenu userData={this.props.userData} onLogout={this.props.onLogout}/>
+        </div>
+        <div className="column col-9">
+          <WallExample/>
+        </div>
+      </div>
+    );
+  }
+}
+
+class WelcomePage extends React.Component<{}, {}> {
+  public render() {
+    return (
+      <div>
+        <p>Mauris vestibulum, dolor eget ultricies volutpat, leo quam lacinia lectus, sit amet feugiat justo magna
+          sed metus. Vivamus dignissim eros id diam vehicula, vehicula vestibulum mauris tempor. Aliquam malesuada
+          nibh porttitor sem dictum volutpat. Nam mollis libero a lacus semper imperdiet.</p>
+
+        <p>Vestibulum rhoncus diam ac velit interdum, cursus mollis ex pharetra. Pellentesque a purus ac odio semper
+          consectetur sed quis odio. Nullam placerat tempus arcu, sed mollis ante blandit non. Quisque ac molestie
+          mauris. Mauris ultricies metus et volutpat tristique. Maecenas sed vehicula ipsum.</p>
+
+        <p>Ut finibus bibendum magna, eget tempor nisl dictum sit amet. Ut a quam ligula.</p>
+        <div className="divider" />
+        <div className="empty">
+          <div className="empty-icon">
+            <i className="icon icon-people" />
+          </div>
+          <p className="empty-title h5">You have no new messages</p>
+          <p className="empty-subtitle">Click the button to start a conversation.</p>
+          <div className="empty-action">
+            <button className="btn btn-primary">Send a message</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+class WallExample extends React.Component<{}, {}> {
+  public render() {
+    return (
+      <div className="panel">
+        <div className="panel-header">
+          <div className="panel-title h6">Your wall</div>
+        </div>
+        <div className="panel-body">
+          <div className="tile">
+            <div className="tile-icon">
+              <figure className="avatar">
+                <img src="img/avatar-1.png" alt="Avatar" />
+              </figure>
+            </div>
+            <div className="tile-content">
+              <p className="tile-title">Thor Odinson</p>
+              <p className="tile-subtitle">Earth's Mightiest Heroes joined forces to take on threats that were too big
+                for any one hero to tackle...</p>
+            </div>
+          </div>
+          <div className="tile">
+            <div className="tile-icon">
+              <figure className="avatar">
+                <img src="img/avatar-2.png" alt="Avatar" />
+              </figure>
+            </div>
+            <div className="tile-content">
+              <p className="tile-title">Bruce Banner</p>
+              <p className="tile-subtitle">The Strategic Homeland Intervention, Enforcement, and Logistics
+                Division...</p>
+            </div>
+          </div>
+          <div className="tile">
+            <div className="tile-icon">
+              <figure className="avatar" data-initial="TS" />
+            </div>
+            <div className="tile-content">
+              <p className="tile-title">Tony Stark</p>
+              <p className="tile-subtitle">Earth's Mightiest Heroes joined forces to take on threats that were too big
+                for any one hero to tackle...</p>
+            </div>
+          </div>
+          <div className="tile">
+            <div className="tile-icon">
+              <figure className="avatar">
+                <img src="img/avatar-4.png" alt="Avatar" />
+              </figure>
+            </div>
+            <div className="tile-content">
+              <p className="tile-title">Steve Rogers</p>
+              <p className="tile-subtitle">The Strategic Homeland Intervention, Enforcement, and Logistics
+                Division...</p>
+            </div>
+          </div>
+          <div className="tile">
+            <div className="tile-icon">
+              <figure className="avatar">
+                <img src="img/avatar-3.png" alt="Avatar" />
+              </figure>
+            </div>
+            <div className="tile-content">
+              <p className="tile-title">Natasha Romanoff</p>
+              <p className="tile-subtitle">Earth's Mightiest Heroes joined forces to take on threats that were too big
+                for any one hero to tackle...</p>
+            </div>
+          </div>
+        </div>
+        <div className="panel-footer">
+          <div className="input-group">
+            <input type="text" className="form-input" placeholder="Hello" />
+              <button className="btn btn-primary input-group-btn">Send</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
 
 export interface IAppProps {
   title: string;
@@ -420,28 +580,26 @@ interface IUserData {
   profilePic: string;
 }
 
+const ANONYMOUS_USER_DATA: IUserData = {
+  isLoggingIn: false,
+  isLoggedIn: false,
+  username: "",
+  email: "",
+  gender: "male",
+  profilePic: "img/avatar-4.png"
+}
+
 export default class App extends React.Component<IAppProps, IAppState> {
 
   constructor(props: IAppProps) {
     super(props);
     this.state = {
-      userData: {} as IUserData
+      userData: ANONYMOUS_USER_DATA
     };
     this.onLogin = this.onLogin.bind(this);
     this.onLogout = this.onLogout.bind(this);
   }
 
-  public componentDidMount() {
-    const userData: IUserData = {
-      isLoggingIn: false,
-      isLoggedIn: false,
-      username: "",
-      email: "",
-      gender: "male",
-      profilePic: "img/avatar-4.png"
-    };
-    this.setState({userData});
-  }
 
   private onLogin(username: string, password: string) {
     // Intermediary state for the UI.
@@ -481,42 +639,6 @@ export default class App extends React.Component<IAppProps, IAppState> {
       color: this.props.titleColor
     };
 
-    const loggedInContent = (
-      <div className="columns">
-        <div className="column col-3">
-          <LeftMenu userData={this.state.userData} onLogout={this.onLogout}/>
-        </div>
-        <div className="column col-9">
-          <HomePageContent/>
-        </div>
-      </div>
-    );
-
-    const anonymousContent = (
-      <div className="columns">
-        <div className="column col-6">
-          <p>Morbi aliquet tincidunt risus pretium imperdiet. Vestibulum vel semper arcu. Nulla vitae nibh tellus.
-            Aenean laoreet vulputate mauris eu malesuada. Pellentesque eu est dui. Donec finibus tellus ut cursus
-            maximus. Duis semper feugiat iaculis. Maecenas id purus sit amet lectus aliquet aliquet.
-            Integer ac risus lectus.</p>
-          <blockquote>
-            <p>The advance of technology is based on making it fit in so that you don't really even notice it, so it's part of everyday life. </p>
-            <cite>- Bill Gates</cite>
-          </blockquote>
-          <p>Quisque faucibus, est et ultricies fermentum, risus ipsum
-            viverra nunc, ut hendrerit felis massa eu odio. Vivamus mollis lacinia
-            metus, eu elementum erat fringilla quis. Donec faucibus urna sed pharetra
-            semper</p>
-
-          <button className="btn">Learn more</button>
-        </div>
-        <div className="divider-vert" data-content="OR" />
-        <div className="column col-3 col-mx-left">
-          <SignupForm/>
-        </div>
-      </div>
-    );
-
     return (
         <div className="container grid-xl">
           <div className="columns">
@@ -530,7 +652,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
               />
             </div>
           </div>
-          {this.state.userData.isLoggedIn ? loggedInContent : anonymousContent}
+          {this.state.userData.isLoggedIn ? <LoggedInPage userData={this.state.userData} onLogout={this.onLogout} /> : <AnonymousHomePage />}
         </div>
     );
   }
