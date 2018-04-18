@@ -12,7 +12,7 @@
 
 In this chapter we learned that when prototyping a simple
 web app, once you have multiple pages, you need to start
-using a router.
+using a router. We simulated a Login and Logout flow.
 
 
 
