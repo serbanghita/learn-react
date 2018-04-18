@@ -20,8 +20,13 @@
    > Learn how to think the React way of building your app. \
    > We build a recursive tree menu with a search attached.
 1. [Prototyping in React](../../tree/prototyping-in-react)
-   > Learn how to prototype a webapp in React without using a storage. \
-   > Apply all the principles learned in the previous chapters.
+   > Learn how to prototype a webapp in React using fake storage data. \
+   > Apply all the principles learned in the previous chapters. \
+   > Hit the limitation of not using a router.
+1. [Using routes](../../tree/using-routes)
+   > Decouple component logic into separate files. \
+   > Use `react-router` to create routes and links. \
+   > Facilitate prototyping and navigation between pages.
 1. Using async data
    > Make your prototype use data coming from an XHR request. \
    > Hit the limitations of the prototype.
