@@ -23,13 +23,13 @@
    > Learn how to prototype a webapp in React without using a storage. \
    > Apply all the principles learned in the previous chapters.
 1. Using async data
-   > Make your prototype use data coming from an XHR request.
+   > Make your prototype use data coming from an XHR request. \
    > Hit the limitations of the prototype.
 1. Using Flux
    > Use Flux pattern to manage data flow in your application.
 1. Testing
-   > Testing your components with Enzyme.
-   > Testing your app with Jest.
+   > Testing your components with Enzyme. \
+   > Testing your app with Jest. \
    > Testing with E2E tests from a user's POV.
 1. Optimization
    > Common optimization techniques and checks.
