@@ -3,29 +3,29 @@
   "version": "0.0.1",
   "description": "Learn React.js with TypeScript from scratch.",
   "scripts": {
-    "tsc": "./node_modules/.bin/tsc",
-    "build": "./node_modules/.bin/webpack --mode development",
-    "dev": "./node_modules/.bin/webpack-dev-server --open --watch-content-base --mode production"
+    "tsc": "tsc",
+    "build": "webpack --mode development",
+    "dev": "webpack-dev-server --open --watch-content-base --mode production"
   },
   "author": "Serban Ghita",
   "license": "MIT",
   "dependencies": {
-    "@types/react": "^16.3.1",
-    "@types/react-dom": "^16.0.4",
+    "@types/react": "^16.4.1",
+    "@types/react-dom": "^16.0.6",
     "form_to_object": "^2.0.0",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0"
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^5.0.0-1",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
+    "awesome-typescript-loader": "^5.1.1",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "source-map-loader": "^0.2.3",
-    "tslint": "^5.2.0",
-    "tslint-react": "^3.0.0",
-    "typescript": "^2.8.1",
-    "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.11",
-    "webpack-dev-server": "^3.1.1"
+    "tslint": "^5.10.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^2.9.2",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^2.1.5",
+    "webpack-dev-server": "^3.1.4"
   }
 }
