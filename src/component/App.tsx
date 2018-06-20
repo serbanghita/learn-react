@@ -1,4 +1,5 @@
 import * as React from "react";
+import { bindLocal } from "./utils";
 
 export interface IAppProps {
     title: string;
@@ -25,13 +26,15 @@ class FeedbackBtn extends React.Component<IFeedbackBtnProps, IFeedbackBtnState> 
     this.state = {isOpened: false};
   }
 
+  @bindLocal
+  handleBtnClick() {
+    this.setState((oldState: IFeedbackBtnState, props: IFeedbackBtnProps) => {
+      return {isOpened: !oldState.isOpened}
+    });
+  };
 
   public render() {
-    const handleBtnClick = () => {
-      this.setState((oldState: IFeedbackBtnState, props: IFeedbackBtnProps) => {
-        return {isOpened: !oldState.isOpened}
-      });
-    };
+
 
     const form = <form>
       <div>
@@ -47,7 +50,7 @@ class FeedbackBtn extends React.Component<IFeedbackBtnProps, IFeedbackBtnState> 
 
     return (
       <div>
-        <button onClick={handleBtnClick}>
+        <button onClick={this.handleBtnClick}>
           {this.props.label} <span>{this.state.isOpened ? "↓" : "[+]"}</span>
         </button>
         {this.state.isOpened ? form : ""}
