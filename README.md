@@ -11,6 +11,9 @@
    > Learn how to handle events.
 1. [Conditional rendering](../../tree/conditional-rendering)
    > Learn how to handle conditional rendering of view elements.
+1. [Decorators](../../tree/decorators)
+   > Learn how to use decorators.
+   > We create a `bind` method decorator.
 1. [Lists](../../tree/lists)
    > Learn how to deal with lists of view elements.
 1. [Lifting local state](../../tree/lifting-local-state)
