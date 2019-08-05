@@ -4,7 +4,7 @@ import * as React from "react";
 interface ITreeNode {
   title: string;
   url: string;
-  children?: ITreeNode[]
+  children?: ITreeNode[];
 }
 
 interface ITreeNodeState extends ITreeNode {
@@ -34,8 +34,8 @@ export default class Tree extends React.Component<ITreeProps, ITreeState> {
   }
 
   public componentWillMount() {
-    fetch('/treeDataModel.json')
-      .then(response => response.json())
+    fetch("/treeDataModel.json")
+      .then((response) => response.json())
       .then((result: ITreeNode[]) => {
         this.setState({ dataModel: result });
       });
@@ -43,7 +43,7 @@ export default class Tree extends React.Component<ITreeProps, ITreeState> {
 
   private onSearchHandler(e) {
     const query = e.target.value.replace(/[^a-z]+/ig, ".*");
-    this.setState({query: query})
+    this.setState({query});
   }
 
   public render() {
@@ -75,7 +75,7 @@ export default class Tree extends React.Component<ITreeProps, ITreeState> {
     }
 
     const treeNodes = nodes.map((treeNode: ITreeNodeState, index: number) => {
-      return <TreeNode key={index} dataModel={treeNode} />
+      return <TreeNode key={index} dataModel={treeNode} />;
     });
 
     return (
