@@ -9,7 +9,7 @@ module.exports = {
     },
 
     // Enable sourcemaps for debugging webpack's output.
-    devtool: "cheap-eval-source-mapService",
+    devtool: "inline-source-map",
 
     devServer: {
         contentBase: "build",
@@ -28,11 +28,15 @@ module.exports = {
 
     module: {
         rules: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+          // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+          {
+            test: /\.tsx?$/,
+            loader: "awesome-typescript-loader",
+            exclude: /node_modules/
+          },
 
-            // All output '.js' files will have any sourcemaps re-processed by 'source-mapService-loader'.
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+          // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+          { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
         ]
     }
 };

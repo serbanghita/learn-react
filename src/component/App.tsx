@@ -1,21 +1,16 @@
 import * as React from "react";
+import SomeComponent from "./SomeComponent";
+import {Messages} from "../a/Messages";
 
-export interface IAppProps {
-    title: string;
-    titleColor: string;
-}
-
-export default class App extends React.Component<IAppProps, {}> {
+export default class App extends React.Component<{}, {}> {
 
   public render() {
-    const pStyle = {
-      color: this.props.titleColor
-    };
 
     return (
         <div>
-            <h1 style={pStyle}>{this.props.title}</h1>
-            <p>A static description of my app.</p>
+            <h1>App</h1>
+          <Messages />
+            {/*<SomeComponent />*/}
         </div>
     );
   }
