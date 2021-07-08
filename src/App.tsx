@@ -1,6 +1,5 @@
 import * as React from "react";
-import SomeComponent from "./SomeComponent";
-import {Messages} from "../a/Messages";
+import Form from "./Form";
 
 export default class App extends React.Component<{}, {}> {
 
@@ -9,8 +8,7 @@ export default class App extends React.Component<{}, {}> {
     return (
         <div>
             <h1>App</h1>
-          <Messages />
-            {/*<SomeComponent />*/}
+          <Form />
         </div>
     );
   }
