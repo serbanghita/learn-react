@@ -3,7 +3,60 @@
     <meta charset="utf-8">
     <title>React Demo</title>
 </head>
-<body class="docs">
+<style>
+    .carousel-wrap {
+        margin: auto;
+        width: 20em;
+        display: block;
+        position: relative;
+    }
+    .carousel-go-left,
+    .carousel-go-right {
+        position: absolute;
+        top: 2em;
+        background: red;
+        color: white;
+        width: 2em;
+        height: 2em;
+        text-align: center;
+        border-radius:1em;
+        cursor: pointer;
+        z-index: 999;
+    }
+    .carousel-go-left {
+        left: -1em;
+    }
+    .carousel-go-right {
+        right: -1em;
+    }
+    .hidden {
+        display: none;
+    }
+    .carousel-slider-wrap {
+        border: 1px solid blue;
+        overflow: hidden; /* debug */
+    }
+    .carousel {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        background: black;
+        /*gap: 1em 1em;*/
+    }
+    .carousel.slide-transition {
+        transition: transform 0.7s ease-in-out;
+    }
+    .carousel-item {
+        background: #eee;
+        width: 10em;
+        min-width: 10em;
+        height: 20em;
+        text-align: center;
+        margin: auto;
+    }
+</style>
+<body>
     <div id="app"></div>
     <script src="js/bundle.js"></script>
 </body>
