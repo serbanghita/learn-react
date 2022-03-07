@@ -12,8 +12,11 @@ module.exports = {
     devtool: "inline-source-map",
 
     devServer: {
-        contentBase: "build",
-        watchContentBase: true
+      open: true,
+      static: {
+        directory: path.join(__dirname, 'build'),
+        serveIndex: true,
+      },
     },
 
     watch: false,
@@ -31,7 +34,7 @@ module.exports = {
           // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
           {
             test: /\.tsx?$/,
-            loader: "awesome-typescript-loader",
+            loader: "ts-loader",
             exclude: /node_modules/
           },
 
