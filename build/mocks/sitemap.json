@@ -1,0 +1,16 @@
+[
+  {
+    "type": "sitemap",
+    "label": "Orders and Invoices",
+    "description": "Fusce hendrerit ante nec eros sodales, sed imperdiet ex eleifend. ",
+    "icon": "",
+    "cta": "https://www.google.com/?q=orders and invoices"
+  },
+  {
+    "type": "sitemap",
+    "label": "Support cases",
+    "description": "Aliquam erat volutpat. Curabitur orci nunc, euismod nec lobortis sed, semper vitae mauris.",
+    "icon": "",
+    "cta": "https://www.google.com/?q=support cases"
+  }
+]

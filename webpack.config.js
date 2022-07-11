@@ -12,7 +12,7 @@ module.exports = {
     devtool: "inline-source-map",
 
     devServer: {
-      open: true,
+      open: false,
       static: {
         directory: path.join(__dirname, 'build'),
         serveIndex: true,
@@ -36,6 +36,11 @@ module.exports = {
             test: /\.tsx?$/,
             loader: "ts-loader",
             exclude: /node_modules/
+          },
+
+          {
+            test: /\.css$/i,
+            use: ['style-loader', 'css-loader']
           },
 
           // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
