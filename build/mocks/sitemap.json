@@ -1,16 +1,14 @@
 [
   {
-    "type": "sitemap",
     "label": "Orders and Invoices",
-    "description": "Fusce hendrerit ante nec eros sodales, sed imperdiet ex eleifend. ",
+    "description": "Review your order history, returns, boxed products, invoices, and more. ",
     "icon": "",
-    "cta": "https://www.google.com/?q=orders and invoices"
+    "link": "/orders"
   },
   {
-    "type": "sitemap",
     "label": "Support cases",
-    "description": "Aliquam erat volutpat. Curabitur orci nunc, euismod nec lobortis sed, semper vitae mauris.",
+    "description": "Review your closed and open cases, ask questions or provide information.",
     "icon": "",
-    "cta": "https://www.google.com/?q=support cases"
+    "link": "/support"
   }
 ]

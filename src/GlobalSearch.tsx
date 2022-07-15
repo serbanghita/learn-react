@@ -27,7 +27,7 @@ function randomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export default function App({services}: IAppProps) {
+export default function GlobalSearch({services}: IAppProps) {
   const [isLoading, setLoading] = useState(false);
   const [httpPromises, setHttpPromises] = useState([] as Promise<AxiosResponse>[]);
   const [httpCompletedRequestsNo, setHttpCompletedRequestsNo] = useState(0);
@@ -53,7 +53,7 @@ export default function App({services}: IAppProps) {
             setTimeout(() => {
              setResults((prev) => [...prev, service.resultsMapFn(response)]);
              setHttpCompletedRequestsNo((prev) => prev + 1);
-            }, randomInt(3000, 10000));
+            }, randomInt(1000, 5000)); // Temporary to simulate network latency.
            return response;
         });
       });
@@ -78,7 +78,7 @@ export default function App({services}: IAppProps) {
   function renderResults() {
     return (
       <View backgroundColor="gray-100">
-        <Flex direction="column" flex gap="size-100">
+        <Flex direction="column" flex rowGap={0}>
           {results}
           {isLoading && renderLoadingProgress()}
         </Flex>
@@ -103,7 +103,7 @@ export default function App({services}: IAppProps) {
 
   return (
     <Provider theme={defaultTheme} colorScheme={"light"}>
-      <Flex direction="column" flex gap="size-100">
+      <Flex direction="column" flex rowGap={"size-100"}>
         <SearchField flex label="Search" labelPosition="side" labelAlign="end" onSubmit={onChange} description="e.g orders, products, invoices." />
 
         {httpPromises.length > 0 && renderResults()}
