@@ -1,0 +1,32 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 18pt;
+  padding: 12px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.card {
+  width: 200px !important;
+  border: 2px dotted black;
+  background: rgba(255, 255, 0, 0.5);
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.section {
+  padding: 1em;
+}
+
+.section-header {
+  background: rgba(255, 0, 0, 0.2);
+}
+.section-content {
+  background: rgba(0, 255, 0, 0.2);
+}
+.section-footer {
+  background: rgba(0, 0, 255, 0.2);
+}
