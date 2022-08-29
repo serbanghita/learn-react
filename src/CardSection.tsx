@@ -1,30 +1,33 @@
 import * as React from "react";
 import {
-  useRef,
   useContext,
-  useEffect,
   useLayoutEffect,
-  useState
+  useState, useCallback
 } from "react";
 import CardResizeContext from "./CardResizeContext";
 
 export const cardSectionTypes = {
   HEADER: "header",
   CONTENT: "content",
+  PRICE: "price",
+  CTA: "cta",
   FOOTER: "footer"
 };
 
 export default function CardSection({ name, children }) {
-  const ref = useRef<HTMLDivElement>(null);
   const [style, setStyle] = useState({});
   const { getMaxCardSectionSize, setCardSectionSize } = useContext(
       CardResizeContext
   );
 
-  useEffect(() => {
-    const domAttr = ref.current as unknown as HTMLElement;
-    console.log("useEffect(): wrapperRef", name, domAttr.clientHeight);
-    setCardSectionSize(domAttr.clientHeight, name);
+  const nodeRef = useCallback(($node) => {
+    console.log('nodeRef', $node);
+    if ($node !== null) {
+      const pTop = parseFloat(window.getComputedStyle($node).getPropertyValue('padding-top')) || 0;
+      const pBottom = parseFloat(window.getComputedStyle($node).getPropertyValue('padding-bottom')) || 0;
+      const height = $node.clientHeight;
+      setCardSectionSize(height - pTop - pBottom, name);
+    }
   }, []);
 
   useLayoutEffect(() => {
@@ -43,7 +46,7 @@ export default function CardSection({ name, children }) {
   }, [name, getMaxCardSectionSize]);
 
   return (
-      <div className={`section section-${name}`} ref={ref} style={style}>
+      <div className={`section section-${name}`} ref={nodeRef} style={style}>
         {children}
       </div>
   );

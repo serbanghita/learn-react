@@ -10,21 +10,26 @@ function App() {
     <div className="App">
       <CardResizeProvider>
         <Card
+          icon={"https://wwwimages.stage.adobe.com/content/dam/acom/one-console/icons_rebrand/ps_appicon.svg"}
           name="first-card"
           headerText="First card title"
-          contentText="First card content text."
-          footerText="First card footer text."
+          priceText="First card content text."
+          ctaText="Go!"
+          footerText="footer text."
         />
         <Card
           name="second-card"
           headerText="Second card title"
-          contentText="Second card content text."
+          priceText="Second card content text. Second card content text."
+          ctaText="Okay"
           footerText="Second card footer text."
         />
         <Card
+          icon={"https://wwwimages.stage.adobe.com/content/dam/acom/one-console/icons_rebrand/cc_appicon.svg"}
           name="third-card"
           headerText="Third card title that keeps on going"
-          contentText="Third card content text."
+          priceText="Third card content text."
+          ctaText="Okay"
           footerText="Third card footer text."
         />
       </CardResizeProvider>

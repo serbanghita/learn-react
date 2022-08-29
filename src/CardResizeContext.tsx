@@ -22,7 +22,7 @@ export function CardResizeProvider({ children }) {
   };
 
   const getMaxCardSectionSize = (name) => {
-    console.log("getMaxSectionSize", name, cardSectionSizes);
+    console.log("getMaxSectionSize", name);
     return cardSectionSizes
     .filter((item) => item.name === name)
     .map((item) => item.height)
